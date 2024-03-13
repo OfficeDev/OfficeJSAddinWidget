@@ -65,7 +65,7 @@
                             ["Run", "the snippets and instantly see the result in the Office document"], // The 2nd highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
                             ["Share and save", "your snippets with GitHub gists"], // The 3rd highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
                             ["Prototype", "an Office add-in you're planning to develop"]]; // The 4th highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
-        var demoVideoLink = "https://www.youtube-nocookie.com/embed/yt6os8zPUKc?autoplay=1&amp;autoloop=1&amp;mute=1&amp;controls=1&amp;modestbranding=1&amp;rel=0##.ytp-pause-overlay"; // The link for a demo video. The value will be displayed on the website.
+        var demoVideoID = "yt6os8zPUKc"; // The youtube video id. 
     
         // Dropdown element IDs 
         var dropdownItemWordId = 'dropdown-item-word';
@@ -104,7 +104,7 @@
             }
 
             // Set demo video link
-            document.getElementById('demo-video').src = demoVideoLink;
+            document.getElementById('demo-video').src = 'https://www.youtube-nocookie.com/embed/'.concat(demoVideoID, '?autoplay=1&amp;autoloop=1&amp;mute=1&amp;controls=1&amp;modestbranding=1&amp;rel=0##.ytp-pause-overlay');
 
             // Set dropdown button svg and text
             var svgsOnDropdown = '';
