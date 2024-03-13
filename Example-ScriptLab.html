@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Install Office Add-in Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        ul li {
+            list-style: none;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="p-5 m-0 border-0 bd-example" onload="setContent()">
+    <div class="
+        container
+        align-items-center
+        justify-content-center justify-content-md-between
+        py-2
+      ">
+        <!-- Title that display the Office Add-in name -->
+        <h1 id="title" style="display: flex; justify-content: center; align-items: center">
+        </h1>
+
+        <!-- Short description of the Office Add-in -->
+        <h5 id="shortDescription" style="margin-bottom: 40px; display: flex; justify-content: center; align-items: center">
+        </h5>
+
+        <div class="row" style="display: flex; justify-content: center">
+            <div class="col-md-auto p-4">
+                <div>
+                    <!-- Details of the Office Add-in and Dropdown button to install the Office Add-in -->
+                    <ul id="details-and-dropdown">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Demo video  -->
+            <div class="col-md-auto">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="demo-video" class="embed-responsive-item" width="500" height="300"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Paramenters that need to config.
+        var addinId = 'WA104380862'; // Unique Add-in ID. Please see README.txt about how to correctly set this value. 
+        var addinName ="Script Lab, a Microsoft Garage project"; // Add-in name. Please see README.txt about how to correctly set this value. 
+        var wordOnlineSupported = true; // Whether the Add-in is supported on Word Online (also known as Word Web). Please see README.txt about how to correctly set this value. 
+        var excelOnlineSupported = true; // Whether the Add-in is supported on Excel Online (also known as Excel Web). Please see README.txt about how to correctly set this value. 
+        var powerpointOnlineSupported = true; // Whether the Add-in is supported on PowerPoint Online (also known as PowerPoint Web). Please see README.txt about how to correctly set this value. 
+        var desktopSupported = true; // Whether the Add-in is supported on Office desktop. Please see README.txt about how to correctly set this value. 
+        var addinShortDescription = "Create, run, and share your Office Add-in code snippets from within Excel, Word, or PowerPoint."; // A short description for the Add-in. The value will be displayed on the website.
+        var addinDetails = [["Create and edit", "code snippets"], // The 1st highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
+                            ["Run", "the snippets and instantly see the result in the Office document"], // The 2nd highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
+                            ["Share and save", "your snippets with GitHub gists"], // The 3rd highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
+                            ["Prototype", "an Office add-in you're planning to develop"]]; // The 4th highlight about the Add-in. The first element in the array is bolded. The sencond element in the array is a short text for detail.
+        var demoVideoLink = "https://www.youtube-nocookie.com/embed/yt6os8zPUKc?autoplay=1&amp;autoloop=1&amp;mute=1&amp;controls=1&amp;modestbranding=1&amp;rel=0##.ytp-pause-overlay"; // The link for a demo video. The value will be displayed on the website.
+    
+        // Dropdown element IDs 
+        var dropdownItemWordId = 'dropdown-item-word';
+        var dropdownItemExcelId = 'dropdown-item-excel';
+        var dropdownItemPowerPointId = 'dropdown-item-powerpoint';
+        var dropdownItemDesktopId = 'dropdown-item-desktop';
+        var dropdownMenuId = 'dropdown-menu';
+
+        var dropdownMenuAdded = false;
+        var svgWord = 'https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/brand-icons/product/svg/word_32x1.svg';
+        var svgExcel = 'https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/brand-icons/product/svg/excel_32x1.svg';
+        var svgPowerPoint = 'https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/assets/brand-icons/product/svg/powerpoint_32x1.svg';
+                  
+
+        function setContent() {
+            // Set title as add-in name
+            var titleElement = document.getElementById("title");
+            titleElement.innerHTML = '<strong>'.concat(addinName, '</strong>');
+
+            // Set short description
+            var descriptionElement = document.getElementById("shortDescription");
+            descriptionElement.innerHTML = addinShortDescription;
+
+            // Set details about this add-in
+            var svgCheck = '<svg viewBox="0 0 520 520" width="20" height="25" fill="green" xmlns="http://www.w3.org/2000/svg"><path d="M79.423 240.755a47.529 47.529 0 0 0-36.737 77.522l120.73 147.894a43.136 43.136 0 0 0 36.066 16.009c14.654-.787 27.884-8.626 36.319-21.515L486.588 56.773a6.13 6.13 0 0 1 .128-.2c2.353-3.613 1.59-10.773-3.267-15.271a13.321 13.321 0 0 0-19.362 1.343q-.135.166-.278.327L210.887 328.736a10.961 10.961 0 0 1-15.585.843l-83.94-76.386a47.319 47.319 0 0 0-31.939-12.438z" data-name="7-Check"></path></svg>';
+            var ul = document.getElementById("details-and-dropdown");            
+
+            for(var i=0; i<addinDetails.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = svgCheck.concat(
+                            "<strong>",
+                                addinDetails[i][0],
+                            "</strong> ",
+                            addinDetails[i][1]);
+                ul.appendChild(li);
+            }
+
+            // Set demo video link
+            document.getElementById('demo-video').src = demoVideoLink;
+
+            // Set dropdown button svg and text
+            var svgsOnDropdown = '';
+            var textOnDropdown = '';
+            if (wordOnlineSupported) {
+                svgsOnDropdown = svgsOnDropdown.concat('<img width="32" height="32" src="', svgWord, '" alt="docx">');
+                textOnDropdown = textOnDropdown.concat('Word');
+            }
+
+            if (excelOnlineSupported) {
+                svgsOnDropdown = svgsOnDropdown.concat('<img width="32" height="32" src="', svgExcel, '" alt="xlsx">');
+
+                if (textOnDropdown.length > 0) {
+                    textOnDropdown = textOnDropdown.concat(', ');
+                }
+
+                textOnDropdown = textOnDropdown.concat('Excel');
+            }
+
+            if (powerpointOnlineSupported) {
+                svgsOnDropdown = svgsOnDropdown.concat('<img width="32" height="32" src="', svgPowerPoint, '" alt="pptx">');
+
+                if (textOnDropdown.length > 0) {
+                    textOnDropdown = textOnDropdown.concat(', ');
+                }
+
+                textOnDropdown = textOnDropdown.concat('PowerPoint');
+            }
+
+            if (svgsOnDropdown == '' && textOnDropdown == '') {
+                if (desktopSupported) {
+                    svgsOnDropdown = svgsOnDropdown.concat('<img width="32" height="32" src="', svgWord, '" alt="docx">');
+					svgsOnDropdown = svgsOnDropdown.concat('<img width="32" height="32" src="', svgExcel, '" alt="xlsx">');
+					svgsOnDropdown = svgsOnDropdown.concat('<img width="32" height="32" src="', svgPowerPoint, '" alt="pptx">');
+					
+                    textOnDropdown = "Office";
+                }
+                else {
+                    console.log('No supported endpoint. Please check README.txt about how to correctly config.');
+                    return;
+                }
+            }
+
+            var li = document.createElement("li");
+            li.innerHTML = '<div class="dropdown">'.concat(
+                                '<button type="button" id="addin-dropdown" class="btn btn-primary dropdown-toggle" style="margin-top: 40px; text-align: left" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" onclick="addDropdownItems()">',
+                                    '<table>',
+                                        '<tr>',
+                                            '<td style="background-color: white; padding: 0 5px">',
+                                                svgsOnDropdown,
+                                            '</td>',
+                                            '<td id="dropdown-text" style="padding: 0 15px">',
+                                                'INSTALL FOR<br /><strong>',
+                                                    textOnDropdown,
+                                                    '</strong>',
+                                            '</td>',
+                                        '</tr>',
+                                    '</table>',
+                                '</button>',
+                                '<ul class="dropdown-menu" id="',dropdownMenuId,'">',
+                                '</ul>',
+                            '</div>');
+            ul.appendChild(li);
+        }
+
+        function toggleAddinDropDown() {
+            let addinDropdown = document.getElementById("addin-dropdown");
+            bootstrap.Dropdown.getOrCreateInstance(addinDropdown).toggle();
+        }
+
+        function dropdownItemClicked(id) {
+            switch (id) {
+                case dropdownItemWordId:
+                    window.open(
+                        'https://go.microsoft.com/fwlink/?linkid=2261098&templateid='.concat( // The URL is for experiment only and likely to change if needed.
+                            addinId,
+                            '&templatetitle=',
+                            addinName
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
+                case dropdownItemExcelId:
+                    window.open(
+                        'https://go.microsoft.com/fwlink/?linkid=2261819&templateid='.concat( // The URL is for experiment only and likely to change if needed.
+                            addinId,
+                            '&templatetitle=',
+                            addinName
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
+                case dropdownItemPowerPointId:
+                    window.open(
+                        'https://go.microsoft.com/fwlink/?linkid=2261820&templateid='.concat( // The URL is for experiment only and likely to change if needed.
+                            addinId,
+                            '&templatetitle=',
+                            addinName
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
+                case dropdownItemDesktopId:
+                    window.open(
+                        'https://appsource.microsoft.com/en-US/product/office/'.concat( 
+                            addinId
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function addDropdownItems() {
+            if (dropdownMenuAdded == false) {                
+                var dropdownMenuEmpty = true;
+
+                if (wordOnlineSupported) {
+                    var ul = document.getElementById(dropdownMenuId);
+                    var li = document.createElement("li");                     
+                    li.innerHTML = '<button id="'.concat(dropdownItemWordId,'" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
+                                        '<img width="32" height="32" src="', svgWord, '" alt="docx">',
+                                        'Open in Word Online',
+                                    '</button>');
+                    ul.appendChild(li);
+
+                    dropdownMenuEmpty = false;
+                }
+
+                if (excelOnlineSupported) {                    
+                    var ul = document.getElementById(dropdownMenuId);
+                    var li = document.createElement("li");
+                    li.innerHTML = '<button id="'.concat(dropdownItemExcelId,'" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
+                                        '<img width="32" height="32" src="', svgExcel, '" alt="xlsx">',
+                                        'Open in Excel Online',
+                                    '</button>');
+                    ul.appendChild(li);
+
+                    dropdownMenuEmpty = false;
+                }
+
+                if (powerpointOnlineSupported) {                    
+                    var ul = document.getElementById(dropdownMenuId);
+                    var li = document.createElement("li");
+                    li.innerHTML = '<button id="'.concat(dropdownItemPowerPointId,'" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
+                                        '<img width="32" height="32" src="', svgPowerPoint, '" alt="pptx">',
+                                        'Open in PowerPoint Online',
+                                    '</button>');
+                    ul.appendChild(li);
+
+                    dropdownMenuEmpty = false;
+                }
+
+                if (desktopSupported) {
+                    var svgArrow = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" /></svg>';
+                    
+                    var ul = document.getElementById(dropdownMenuId);
+                    if (dropdownMenuEmpty == false) {
+                        var divider = document.createElement("li");
+                        divider.innerHTML = '<hr class="dropdown-divider"/>';
+                        ul.appendChild(divider);
+                    }
+
+                    var li = document.createElement("li");
+                    li.innerHTML = '<button id="'.concat(dropdownItemDesktopId,'" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)" style="text-align: right">',
+                                        'Learn more ',
+                                        svgArrow,
+                                    '</button>');
+                    ul.appendChild(li);
+
+                    dropdownMenuEmpty = false;
+                }
+
+                if (dropdownMenuEmpty == false) {
+                    dropdownMenuAdded = true;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
