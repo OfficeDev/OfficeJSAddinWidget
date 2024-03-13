@@ -14,28 +14,28 @@ The webpage will show the add-in name, a short description of the add-in, a few 
 2. Config the paramenters under "Paramenters that need to config" part.<br>
 	a. <strong>addinId</strong><br>
 		This is the unique add-in ID. You can get the correct value by following below steps.<br>
-		1) Go to https://appsource.microsoft.com/en-US/ from your browser.<br>
-		2) Input your Office add-in name in the search bar on top center of AppSource homepage.<br>
-		3) Click your add-in in the seach results.<br>
-		4) The add-in information page will be automatically displayed in current tab.<br>
-		5) The add-in ID is in the URL.<br>
+		&emsp;1) Go to https://appsource.microsoft.com/en-US/ from your browser.<br>
+		&emsp;2) Input your Office add-in name in the search bar on top center of AppSource homepage.<br>
+		&emsp;3) Click your add-in in the seach results.<br>
+		&emsp;4) The add-in information page will be automatically displayed in current tab.<br>
+		&emsp;5) The add-in ID is in the URL.<br>
    For example, if the URL is https://appsource.microsoft.com/en-US/product/office/WA104380862?tab=Overview, then "WA104380862" is the add-in ID that you should input for this parameter in sample code.
 		
 	b. <strong>addinName</strong><br>
 		This is the add-in name. You can get the correct value by following below steps.<br>
-		1) Go to the webpage in 2.a.4).<br>
-		2) The add-in name is displayed as the title on right of the add-in icon.<br>
+		&emsp;1) Go to the webpage in 2.a.4).<br>
+		&emsp;2) The add-in name is displayed as the title on right of the add-in icon.<br>
    For example, if the webpage is https://appsource.microsoft.com/en-US/product/office/WA104380862?tab=Overview, then "Script Lab, a Microsoft Garage project" is the add-in ID that you should input for this parameter in sample code.
 		
 	c. <strong>wordOnlineSupported, excelOnlineSupported, powerpointOnlineSupported, desktopSupported</strong><br>
 		This is the Office products that this add-in supports. You can get the correct value by following below steps.<br>
-		1) Go to the webpage in 2.a.4).<br>
-		2) Click "details + support" tab on the webpage.<br>
-		3) Scroll down to "Products supported" section.<br>
-			- If "Word on the web" is in the list, then set wordOnlineSupported to true. Otherwise, set it to false.<br>
-			- If "Excel on the web" is in the list, then set excelOnlineSupported to true. Otherwise, set it to false.<br>
-			- If "PowerPoint on the web" is in the list, then set powerpointOnlineSupported to true. Otherwise, set it to false.<br>
-			- If any item contains "Windows" or "Mac", then set desktopSupported to true. Otherwise, set it to false.<br>
+		&emsp;1) Go to the webpage in 2.a.4).<br>
+		&emsp;2) Click "details + support" tab on the webpage.<br>
+		&emsp;3) Scroll down to "Products supported" section.<br>
+			&emsp;&emsp;- If "Word on the web" is in the list, then set wordOnlineSupported to true. Otherwise, set it to false.<br>
+			&emsp;&emsp;- If "Excel on the web" is in the list, then set excelOnlineSupported to true. Otherwise, set it to false.<br>
+			&emsp;&emsp;- If "PowerPoint on the web" is in the list, then set powerpointOnlineSupported to true. Otherwise, set it to false.<br>
+			&emsp;&emsp;- If any item contains "Windows" or "Mac", then set desktopSupported to true. Otherwise, set it to false.<br>
 			
 	d. <strong>addinShortDescription</strong><br>
 		This is the short description for the add-in which is displayed on the webpage. Please customize it as you need. 
@@ -47,8 +47,8 @@ The webpage will show the add-in name, a short description of the add-in, a few 
 		
 	f. <strong>demoVideoID</strong><br>
 		This is the ID for the youtube video that display on the webpage. Please follow below step to get it.<br>
-		1) Open your youtube video in browser.<br>
-   		2) In the tab URL, the value for "v" parameter is the video ID.<br>
+		&emsp;1) Open your youtube video in browser.<br>
+   		&emsp;2) In the tab URL, the value for "v" parameter is the video ID.<br>
    	For example, if the youtube video URL is "https://www.youtube.com/watch?v=yt6os8zPUKc", then the video ID is "yt6os8zPUKc".
 		
 4. Save the html file and open by browser. Verify the UI and dropdown links works for your scenario.
