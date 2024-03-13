@@ -45,8 +45,11 @@ The webpage will show the add-in name, a short description of the add-in, a few 
 		
    Note: It is free for you to add/remove the row count to display more/less descriptions. But if you prefer to not use 2D Array, please also update the for Loop in setContent() which is located at line 95 to line 103. 
 		
-	f. <strong>demoVideoLink</strong><br>
-		This is for the demo video that display on the webpage. Please customize it as you need.
+	f. <strong>demoVideoID</strong><br>
+		This is the ID for the youtube video that display on the webpage. Please follow below step to get it.<br>
+		1) Open your youtube video in browser.<br>
+   		2) In the tab URL, the value for "v" parameter is the video ID.<br>
+   	For example, if the youtube video URL is "https://www.youtube.com/watch?v=yt6os8zPUKc", then the video ID is "yt6os8zPUKc".
 		
 4. Save the html file and open by browser. Verify the UI and dropdown links works for your scenario.
 
