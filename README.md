@@ -8,7 +8,7 @@ The webpage will show the add-in name, a short description of the add-in, a few 
 > To use this sample code, please follow the [Partner-Led Marketing Guidelines](https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Fforms.office.com%2Fpages%2Fresponsepage.aspx%3Fid%3Dv4j5cvGGr0GRqy180BHbR9SZm6iKPzNJvudw-PPFJydUNFZOMTJVWlVaOTRHQVQ5RENQMUEwWVdaMC4u&data=05%7C02%7Camha%40microsoft.com%7C65489391094a4ceb72fe08dc488e5159%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638465023522998462%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=vVQh3Binli51i8S8T81j%2F4b9%2F0OtDfXYUj1q2HWug1g%3D&reserved=0).
 
 > [!TIP]
-> If you want a simple trial on the dropdown button link that enables user to install and use add-in, please use https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/LinkGenerator.html.
+> If you want a simple trial on the dropdown button link that enables user to install and use add-in, please clone https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/LinkGenerator.html to your local, open with browser app and input the information as the UI shows.
 
 ## Usage
 
