@@ -1,6 +1,6 @@
 # Sample code for the Web Widget that promote the Office add-in.
 
-The webpage will show the add-in name, a short description of the add-in, a few details about the add-in functionality for highlight, a dropdown button to install and use the add-in and a video to demo the add-in. This is what the UI looks like.
+The webpage will show the add-in name, a few details about the add-in functionality for highlight, a dropdown button to install and use the add-in and an image to demo the add-in. This is what the UI looks like.
 
 <img alt="DemoUI.png" src="https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/Example-ScriptLab-DemoUI.png">
 
@@ -12,7 +12,7 @@ The webpage will show the add-in name, a short description of the add-in, a few 
 
 ## Usage
 
-1. Download the Example-ScriptLab.html file and go to <script> at line 55.
+1. Download the Example-ScriptLab.html file and go to <script> at line 62.
 
 2. Config the paramenters under "Paramenters that need to config" part.<br>
 	a. <strong>addinId</strong><br>
@@ -40,19 +40,11 @@ The webpage will show the add-in name, a short description of the add-in, a few 
 			&emsp;&emsp;- If "PowerPoint on the web" is in the list, then set powerpointOnlineSupported to true. Otherwise, set it to false.<br>
 			&emsp;&emsp;- If any item contains "Windows" or "Mac", then set desktopSupported to true. Otherwise, set it to false.<br>
 			
-	d. <strong>addinShortDescription</strong><br>
-		This is the short description for the add-in which is displayed on the webpage. Please customize it as you need. 
+	d. <strong>addinDetails</strong><br>
+		This is for descriptions about the add-in functionalities displayed on the webpage. 
 		
-	e. <strong>addinDetails</strong><br>
-		This is for descriptions about the add-in functionalities displayed on the webpage. It is implemented as 2D Array. Each row is one piece of description. The first column is the highlighted text for summary of current description, and the second column is for more explanation for currect description. Please customize the text as you need.
-		
-   Note: It is free for you to add/remove the row count to display more/less descriptions. But if you prefer to not use 2D Array, please also update the for Loop in setContent() which is located at line 95 to line 103. 
-		
-	f. <strong>demoVideoID</strong><br>
-		This is the ID for the youtube video that display on the webpage. Please follow below step to get it.<br>
-		&emsp;1) Open your youtube video in browser.<br>
-   		&emsp;2) In the tab URL, the value for "v" parameter is the video ID.<br>
-   	For example, if the youtube video URL is "https://www.youtube.com/watch?v=yt6os8zPUKc", then the video ID is "yt6os8zPUKc".
+	e. <strong>demoImage</strong><br>
+		This is the image for the add-in that display on the webpage.
 		
 4. Save the html file and open by browser. Verify the UI and dropdown links works for your scenario.
 
