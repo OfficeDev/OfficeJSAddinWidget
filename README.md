@@ -30,7 +30,7 @@ The webpage will show the add-in name, a few details about the add-in functional
 		&emsp;2) The add-in name is displayed as the title on right of the add-in icon.<br>
    For example, if the webpage is https://appsource.microsoft.com/en-US/product/office/WA104380862?tab=Overview, then "Script Lab, a Microsoft Garage project" is the add-in ID that you should input for this parameter in sample code.
 		
-	c. <strong>wordOnlineSupported, excelOnlineSupported, powerpointOnlineSupported, desktopSupported</strong><br>
+	c. <strong>wordOnlineSupported, excelOnlineSupported, powerpointOnlineSupported</strong><br>
 		This is the Office products that this add-in supports. You can get the correct value by following below steps.<br>
 		&emsp;1) Go to the webpage in 2.a.4).<br>
 		&emsp;2) Click "details + support" tab on the webpage.<br>
@@ -38,12 +38,14 @@ The webpage will show the add-in name, a few details about the add-in functional
 			&emsp;&emsp;- If "Word on the web" is in the list, then set wordOnlineSupported to true. Otherwise, set it to false.<br>
 			&emsp;&emsp;- If "Excel on the web" is in the list, then set excelOnlineSupported to true. Otherwise, set it to false.<br>
 			&emsp;&emsp;- If "PowerPoint on the web" is in the list, then set powerpointOnlineSupported to true. Otherwise, set it to false.<br>
-			&emsp;&emsp;- If any item contains "Windows" or "Mac", then set desktopSupported to true. Otherwise, set it to false.<br>
-			
-	d. <strong>addinDetails</strong><br>
+
+	d. <strong>linkAddInAppSource</strong><br>
+		If you would like to show the link to Office AppSource, then set linkAddInAppSource to true. Otherwise, set it to false.
+
+	e. <strong>addinDetails</strong><br>
 		This is for descriptions about the add-in functionalities displayed on the webpage. 
 		
-	e. <strong>demoImage</strong><br>
+	f. <strong>demoImage</strong><br>
 		This is the image for the add-in that display on the webpage.
 		
 4. Save the html file and open by browser. Verify the UI and dropdown links works for your scenario.

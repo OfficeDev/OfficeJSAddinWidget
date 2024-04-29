@@ -61,12 +61,12 @@
 
     <script>
         // Paramenters that need to config.
-        var addinId = 'WA104380862'; // Unique Add-in ID. Go to https://appsource.microsoft.com/en-US/ and search your Add-in name to get the ID. 
+        var addinId = 'WA104380862'; // Unique Add-in ID. Go to https://appsource.microsoft.com/en-US/ and search with your Add-in name to get the ID. Please see README.txt about how to correctly set this value.
         var addinName = "Script Lab, a Microsoft Garage project"; // Add-in name. Please see README.txt about how to correctly set this value. 
         var wordOnlineSupported = true; // Whether the Add-in is supported on Word Online (also known as Word Web). Please see README.txt about how to correctly set this value. 
         var excelOnlineSupported = true; // Whether the Add-in is supported on Excel Online (also known as Excel Web). Please see README.txt about how to correctly set this value. 
         var powerpointOnlineSupported = true; // Whether the Add-in is supported on PowerPoint Online (also known as PowerPoint Web). Please see README.txt about how to correctly set this value. 
-        var desktopSupported = true; // Whether the Add-in is supported on Office desktop. Please see README.txt about how to correctly set this value. 
+        var linkAddInAppSource = true; // Whether to show the link to Office AppSource. Please see README.txt about how to correctly set this value. 
         var addinDetails = "Script Lab lets you quickly create, run, and share Office Add-ins in Excel, Word, and PowerPoint. Code seamlessly with JavaScript and TypeScript, no extra software needed!"; // Details about the Office Add-in.
         var demoImage = ".\\demoImage.png"; // The image for Add-in to show in the webpage. 
         // End of paramenters that need to config.
@@ -204,7 +204,7 @@
                     dropdownMenuEmpty = false;
                 }
 
-                if (desktopSupported) {
+                if (linkAddInAppSource) {
                     var svgArrow = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" /></svg>';
 
                     var ul = document.getElementById(dropdownMenuId);
