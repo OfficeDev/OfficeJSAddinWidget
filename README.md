@@ -1,4 +1,9 @@
-# Sample code for the Web Widget that promote the Office add-in.
+# Sample code for the Web Widget that facilitate Office add-in distribution.
+
+## Introduction
+This project simplifies the process of distributing Office add-ins by enabling direct installation from a website. We provide a convenient install link and a web widget to enhance user experience and streamline the add-in installation process for better acquisition conversion.
+
+## Getting Started
 
 The webpage will show the add-in name, a few details about the add-in functionality for highlight, a dropdown button to install and use the add-in and an image to demo the add-in. This is what the UI looks like.
 
@@ -10,9 +15,34 @@ The webpage will show the add-in name, a few details about the add-in functional
 > [!TIP]
 > If you want a simple trial on the dropdown button link that enables user to install and use add-in, please clone https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/LinkGenerator.html to your local, open with browser app and input the information as the UI shows.
 
-## Usage
+### Usage for how to generate the install link
 
-1. Download the Example-ScriptLab.html file and go to <script> at line 62.
+To better distribute your add-in, you can create an install link to provide your users with the "click and run" experience from your website or anywhere else after you submit your add-in to AppSource. The link will seamlessly bring users to their Web sersion WXP with your add-in automatically launched, so you can directly guide users to try your add-in instead of letting them find it themselves in the Add-in Store. 
+
+To create the link, you can reference the link below and configure the 3 parameters in the query string.<br>
+https://go.microsoft.com/fwlink/?linkid={{linkId}}&templateid={{addInId}}&templatetitle={{addInName}}
+
+1. <strong>linkId</strong><br>
+   This prarmeter controls which web endpoint would be opened when users click the link. <br>
+	· For Word Web: 2261098 <br>
+	· For Excel Web: 2261819 <br>
+	· For PowerPoint Web: 2261820 <br>
+   This approach currently supports WXP Web only. Will support desktop endpoint and Outlook in the future.<br>
+
+2. <strong>addInId</strong><br>
+   The ID of your add-in published in AppSource<br>
+
+3. <strong>addInName</strong><br>
+   The full name of your add-in in percent encoding format. For example, "space" should be %20, and "-" should be %2D...etc.<br>
+
+For example, for the add-in Script Lab, it supports all Word, Excel, PowerPoint. 
+If we want to create an install link so that users can click and launch Script Lab, this link should be:
+https://go.microsoft.com/fwlink/?linkid=2261819&templateid=WA104380862&templatetitle=Script%20Lab,%20a%20Microsoft%20Garage%20project
+Where 2261819 is the Excel Web launch link ID, WA104380862 is Script Lab's add-in id, and "Script%20Lab,%20a%20Microsoft%20Garage%20project" is the full name in percent encoding format.<br>
+
+### Usage for the web widget
+
+1. Download the WebWidget/Example-ScriptLab.html file and go to <script> at line 62.
 
 2. Config the paramenters under "Paramenters that need to config" part.<br>
 	a. <strong>addinId</strong><br>
