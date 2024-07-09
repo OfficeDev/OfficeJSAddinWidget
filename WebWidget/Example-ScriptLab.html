@@ -69,7 +69,7 @@
         var wordDesktopSupported = true; // Wheter the Add-in is supported on Word on Windows or Mac. Please see README.txt about how to correctly set this value. 
         var excelDesktopSupported = true; // Wheter the Add-in is supported on Excel on Windows or Mac. Please see README.txt about how to correctly set this value. 
         var powerpointDesktopSupported = true; // Wheter the Add-in is supported on PowerPoint on Windows or Mac. Please see README.txt about how to correctly set this value. 
-        var language = "en-US"; // The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac.
+        var language = "en-US"; // The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. Please see README.txt about how to correctly set this value.
         var linkAddInAppSource = true; // Whether to show the link to Office AppSource. Please see README.txt about how to correctly set this value. 
         var addinDetails = "Script Lab lets you quickly create, run, and share Office Add-ins in Excel, Word, and PowerPoint. Code seamlessly with JavaScript and TypeScript, no extra software needed!"; // Details about the Office Add-in.
         var demoImage = ".\\demoImage.png"; // The image for Add-in to show in the webpage. 
@@ -237,79 +237,47 @@
             }
         }
 
+        function addDropdownItem(dropdownItemId, svg, alt, text) {
+            var ul = document.getElementById(dropdownMenuId);
+                    var li = document.createElement("li");
+                    li.innerHTML = '<button id="'.concat(dropdownItemId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
+                        '<img width="32" height="32" src="', svg, '" alt="', alt, '">',
+                        '&emsp;', text,
+                        '</button>');
+                    ul.appendChild(li);
+        }
+
         function addDropdownItems() {
             if (dropdownMenuAdded == false) {
                 var dropdownMenuEmpty = true;
 
                 if (wordDesktopSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemWordDesktopId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgWord, '" alt="docx">',
-                        '&emsp;Open in Word',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemWordDesktopId, svgWord, 'docx', 'Open in Word');
                     dropdownMenuEmpty = false;
                 }
 
                 if (excelDesktopSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemExcelDesktopId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgExcel, '" alt="xlsx">',
-                        '&emsp;Open in Excel',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemExcelDesktopId, svgExcel, 'xlsx', 'Open in Excel');
                     dropdownMenuEmpty = false;
                 }
 
                 if (powerpointDesktopSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemPowerPointDesktopId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgPowerPoint, '" alt="pptx">',
-                        '&emsp;Open in PowerPoint',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemPowerPointDesktopId, svgPowerPoint, 'pptx', 'Open in PowerPoint');
                     dropdownMenuEmpty = false;
                 }
 
                 if (wordOnlineSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemWordId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgWord, '" alt="docx">',
-                        '&emsp;Open in Word on the Web',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemWordId, svgWord, 'docx', 'Open in Word on the Web');
                     dropdownMenuEmpty = false;
                 }
 
                 if (excelOnlineSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemExcelId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgExcel, '" alt="docx">',
-                        '&emsp;Open in Excel on the Web',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemExcelId, svgExcel, 'xlsx', 'Open in Excel on the Web');
                     dropdownMenuEmpty = false;
                 }
 
                 if (powerpointOnlineSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemPowerPointId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgPowerPoint, '" alt="docx">',
-                        '&emsp;Open in PowerPoint on the Web',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemPowerPointId, svgPowerPoint, 'pptx', 'Open in PowerPoint on the Web');
                     dropdownMenuEmpty = false;
                 }
 

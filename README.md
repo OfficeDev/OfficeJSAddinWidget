@@ -73,7 +73,7 @@ Where 2261819 is the Excel Web launch link ID, WA104380862 is Script Lab's add-i
 			&emsp;&emsp;- If "PowerPoint on Windows" or "PowerPoint on Mac" is in the list, then set powerpointDesktopSupported to true. Otherwise, set it to false.<br>
 	
 	d. <strong>language</strong><br>
-		The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. For example, "en-US".
+		The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. For example, "en-US", "de-DE", "fr-FR", "it-IT", "ja-JP", "zh-CN".
 
 	e. <strong>linkAddInAppSource</strong><br>
 		If you would like to show the link to Office AppSource, then set linkAddInAppSource to true. Otherwise, set it to false.
