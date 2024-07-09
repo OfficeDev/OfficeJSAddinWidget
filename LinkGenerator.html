@@ -126,7 +126,7 @@
       <div class="col">
         <div class="input-group">
           <span class="input-group-text" id="inputGroup-language"><strong>Language</strong></span>
-          <input id="input-language" type="text" class="form-control" aria-label="Sizing example input"
+          <input id="input-language" type="text" placeholder="en-US" class="form-control" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default">
         </div>
       </div>
@@ -134,7 +134,7 @@
         <small style="font-style: italic;">
           This is the language of Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. 
           <br>
-          The default value is "en-US". Please set to other language is needed. For example: "de-DE", "fr-FR", "it-IT", "ja-JP", "zh-CN".
+          The default value is "en-US". Please set to other language if needed. For example: "de-DE", "fr-FR", "it-IT", "ja-JP", "zh-CN".
           <br>
           Please leave this blank if your Add-in is only available on Office on the Web.
         </small>
@@ -164,7 +164,7 @@
             ) {
                 d += performance.now(); //use high-precision timer if available
             }
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+            return 'xxxxxxxx-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(
                 /[xy]/g,
                 function (c) {
                     var r = (d + Math.random() * 16) % 16 | 0;
@@ -222,7 +222,7 @@
           '</a>',
           '<strong> Note: ',
             correlation,
-          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.</strong>',
+          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click. Please look at generateGUID() function as an example of how to generate it.</strong>',
           '</p>'
         );
       }
@@ -247,7 +247,7 @@
           '</a>',
           '<strong> Note: ',
             correlation,
-          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.</strong>',
+          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click. Please look at generateGUID() function as an example of how to generate it.</strong>',
           '</p>'
         );
       }
@@ -272,7 +272,7 @@
           '</a>',
           '<strong> Note: ',
             correlation,
-          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.</strong>',
+          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click. Please look at generateGUID() function as an example of how to generate it.</strong>',
           '</p>'
         );
       }

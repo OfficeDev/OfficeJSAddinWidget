@@ -15,6 +15,42 @@ The webpage will show the add-in name, a few details about the add-in functional
 > [!TIP]
 > If you want a simple trial on the dropdown button link that enables user to install and use add-in, please clone https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/LinkGenerator.html to your local, open with browser app and input the information as the UI shows.
 
+### Usage for how to generate the install link for Office on Windows or Mac
+
+To better distribute your add-in, you can create an install link to provide your users with the "click and run" experience from your website or anywhere else after you submit your add-in to AppSource. The link will seamlessly bring users to their Web sersion WXP with your add-in automatically launched, so you can directly guide users to try your add-in instead of letting them find it themselves in the Add-in Store. 
+
+To create the link, you can reference the link below and configure the parameters in the query string.<br>
+{{appName}}:https://api.addins.store.office.com/addinstemplate/{{language}}/{{correlation}}/{{addinId}}/none/{{addinName}}.{{fileFormat}}?omexsrctype=1
+
+1. <strong>appName</strong><br>
+   This prarmeter controls which Office application would be opened when users click the link. <br>
+	· For Word: ms-word <br>
+	· For Excel: ms-excel <br>
+	· For PowerPoint: ms-powerpoint <br>
+	This approach currently supports WXP on Windows and Mac only.<br>
+
+2. <strong>language</strong><br>
+   This is the language of Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac.<br>
+   Please set as needed. For example: "de-DE", "fr-FR", "it-IT", "ja-JP", "zh-CN".<br>
+
+3. <strong>correlation</strong><br>
+   A GUID for diagnostic purpose. For example, "7bf846ec-905a-5edd-b162-83498f9a8674".<br>
+   We strongly recommend you to runtime generate it and make it different per click.<br>
+
+4. <strong>addInId</strong><br>
+   The ID of your add-in published in AppSource<br>
+
+5. <strong>addInName</strong><br>
+   The full name of your add-in in percent encoding format. For example, "space" should be %20, and "-" should be %2D...etc.<br>
+
+6. <strong>fileFormat</strong><br>
+    · For Word: docx <br>
+	· For Excel: xlsx <br>
+	· For PowerPoint: pptx <br>
+
+For example, if we want to create an install link so that users can click and launch Script Lab on Word on Windows, this link should be: 
+ms-word:https://api.addins.store.office.com/addinstemplate/en-US/228a829b-69d7-45f4-a338-c6aba330ec7e/WA104380862/none/Script-Lab--a-Microsoft-Garage-project.docx?omexsrctype=1.<br>
+
 ### Usage for how to generate the install link for Office on the Web
 
 To better distribute your add-in, you can create an install link to provide your users with the "click and run" experience from your website or anywhere else after you submit your add-in to AppSource. The link will seamlessly bring users to their Web sersion WXP with your add-in automatically launched, so you can directly guide users to try your add-in instead of letting them find it themselves in the Add-in Store. 
@@ -27,7 +63,7 @@ https://go.microsoft.com/fwlink/?linkid={{linkId}}&templateid={{addInId}}&templa
 	· For Word Web: 2261098 <br>
 	· For Excel Web: 2261819 <br>
 	· For PowerPoint Web: 2261820 <br>
-   This approach currently supports WXP Web only. Will support desktop endpoint and Outlook in the future.<br>
+   This approach currently supports WXP Web only.<br>
 
 2. <strong>addInId</strong><br>
    The ID of your add-in published in AppSource<br>
@@ -73,7 +109,7 @@ Where 2261819 is the Excel Web launch link ID, WA104380862 is Script Lab's add-i
 			&emsp;&emsp;- If "PowerPoint on Windows" or "PowerPoint on Mac" is in the list, then set powerpointDesktopSupported to true. Otherwise, set it to false.<br>
 	
 	d. <strong>language</strong><br>
-		The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. For example, "en-US", "de-DE", "fr-FR", "it-IT", "ja-JP", "zh-CN".
+		The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. For example, "en-US", "de-DE", "fr-FR", "it-IT", "ja-JP", "zh-CN". Please leave this blank if your Add-in is only available on Office on the Web.
 
 	e. <strong>linkAddInAppSource</strong><br>
 		If you would like to show the link to Office AppSource, then set linkAddInAppSource to true. Otherwise, set it to false.
