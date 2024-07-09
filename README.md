@@ -71,7 +71,8 @@ Where 2261819 is the Excel Web launch link ID, WA104380862 is Script Lab's add-i
 			&emsp;&emsp;- If "Word on Windows" or "Word on Mac" is in the list, then set wordDesktopSupported to true. Otherwise, set it to false.<br>		
 			&emsp;&emsp;- If "Excel on Windows" or "Excel on Mac" is in the list, then set excelDesktopSupported to true. Otherwise, set it to false.<br>		
 			&emsp;&emsp;- If "PowerPoint on Windows" or "PowerPoint on Mac" is in the list, then set powerpointDesktopSupported to true. Otherwise, set it to false.<br>
-	d. <strong>language<strong><br>
+	
+	d. <strong>language</strong><br>
 		The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. For example, "en-US".
 
 	e. <strong>linkAddInAppSource</strong><br>
