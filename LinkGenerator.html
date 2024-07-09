@@ -82,6 +82,24 @@
       <div class="col">
         <div><strong>Supported products</strong></div>
         <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckWordDesktop">
+          <label class="form-check-label" for="flexCheckDefault">
+            Word
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckExcelDesktop">
+          <label class="form-check-label" for="flexCheckDefault">
+            Excel
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckPowerPointDesktop">
+          <label class="form-check-label" for="flexCheckDefault">
+            PowerPoint
+          </label>
+        </div>
+        <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckWord">
           <label class="form-check-label" for="flexCheckDefault">
             Word on the Web
@@ -102,6 +120,26 @@
       </div>
     </div>
   </div>
+  <br>
+  <div class="container text-left">
+    <div class="row">
+      <div class="col">
+        <div class="input-group">
+          <span class="input-group-text" id="inputGroup-language"><strong>Language</strong></span>
+          <input id="input-language" type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>
+      <div class="col">
+        <small style="font-style: italic;">
+          This is the language of Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. 
+          <br>
+          The default value is "en-US". 
+          <br>
+          Please leave this blank if your Add-in is only available on Office on the Web.
+        </small>
+    </div>
+  </div>
 
   <br>
 
@@ -118,9 +156,29 @@
   </div>
 
   <script>
+    function generateGUID() {
+            var d = new Date().getTime();
+            if (
+                typeof performance !== 'undefined' &&
+                typeof performance.now === 'function'
+            ) {
+                d += performance.now(); //use high-precision timer if available
+            }
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+                /[xy]/g,
+                function (c) {
+                    var r = (d + Math.random() * 16) % 16 | 0;
+                    d = Math.floor(d / 16);
+                    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+                }
+            );
+        }
+
     function getUrl() {
       var addinId = document.getElementById("input-addin-id").value;
-      var addinName = document.getElementById("input-addin-name").value;
+      var addinName = document.getElementById("input-addin-name").value;      
+      var language = document.getElementById("input-language").value;
+      var languageDefault = "en-US";
 
       if (addinId == "") {
         alert("Please input the add-in ID!");
@@ -132,12 +190,92 @@
         return;
       }
 
-      if (document.getElementById("flexCheckWord").checked == false && document.getElementById("flexCheckExcel").checked == false && document.getElementById("flexCheckPowerPoint").checked == false) {
+      if (document.getElementById("flexCheckPowerPointDesktop").checked == false && 
+          document.getElementById("flexCheckExcelDesktop").checked == false && 
+          document.getElementById("flexCheckWordDesktop").checked == false && 
+          document.getElementById("flexCheckWord").checked == false && 
+          document.getElementById("flexCheckExcel").checked == false && 
+          document.getElementById("flexCheckPowerPoint").checked == false) {
         alert("Please select the supported products!");
         return;
       }
 
       document.getElementById("links").innerHTML = "";
+
+      if (document.getElementById("flexCheckWordDesktop").checked) {
+        var correlation = generateGUID();
+        var language = language == "" ? languageDefault : language;
+        var linkWordDesktop = 'ms-word:https://api.addins.store.office.com/addinstemplate/'.concat(
+                            language,
+                            '/',
+                            correlation,
+                            '/',
+                            addinId,
+                            '/none/',
+                            addinName.replace(/[^A-Za-z0-9]/g, '-'),
+                            '.docx?omexsrctype=1');
+
+        document.getElementById("links").innerHTML = document.getElementById("links").innerHTML.concat(
+          '<p>Word: ',
+          '<a href="', linkWordDesktop, '" target="_blank" rel="noopener noreferrer">',
+            linkWordDesktop,
+          '</a>',
+          '<strong> Note: ',
+            correlation,
+          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.</strong>',
+          '</p>'
+        );
+      }
+
+      if (document.getElementById("flexCheckExcelDesktop").checked) {
+        var correlation = generateGUID();
+        var language = language == "" ? languageDefault : language;
+        var linkExcelDesktop = 'ms-excel:https://api.addins.store.office.com/addinstemplate/'.concat(
+                            language,
+                            '/',
+                            correlation,
+                            '/',
+                            addinId,
+                            '/none/',
+                            addinName.replace(/[^A-Za-z0-9]/g, '-'),
+                            '.xlsx?omexsrctype=1');
+
+        document.getElementById("links").innerHTML = document.getElementById("links").innerHTML.concat(
+          '<p>Excel: ',
+          '<a href="', linkExcelDesktop, '" target="_blank" rel="noopener noreferrer">',
+            linkExcelDesktop,
+          '</a>',
+          '<strong> Note: ',
+            correlation,
+          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.</strong>',
+          '</p>'
+        );
+      }
+
+      if (document.getElementById("flexCheckPowerPointDesktop").checked) {
+        var correlation = generateGUID();
+        var language = language == "" ? languageDefault : language;
+        var linkPowerPointDesktop = 'ms-powerpoint:https://api.addins.store.office.com/addinstemplate/'.concat(
+                            language,
+                            '/',
+                            correlation,
+                            '/',
+                            addinId,
+                            '/none/',
+                            addinName.replace(/[^A-Za-z0-9]/g, '-'),
+                            '.pptx?omexsrctype=1');
+
+        document.getElementById("links").innerHTML = document.getElementById("links").innerHTML.concat(
+          '<p>PowerPoint: ',
+          '<a href="', linkPowerPointDesktop, '" target="_blank" rel="noopener noreferrer">',
+            linkPowerPointDesktop,
+          '</a>',
+          '<strong> Note: ',
+            correlation,
+          ' is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.</strong>',
+          '</p>'
+        );
+      }
 
       if (document.getElementById("flexCheckWord").checked) {
         var linkWord = 'https://go.microsoft.com/fwlink/?linkid=2261098&templateid='.concat(addinId,
@@ -182,13 +320,11 @@
       }
 
       document.getElementById("links").innerHTML = document.getElementById("links").innerHTML.concat(
-        '<h5>If you are interested in promoting your add-in on your website, please take a look at <a href="https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/Example-ScriptLab.html" target="_blank" rel="noopener noreferrer nofollow">Example-ScriptLab.html file.</a></h5>'
+        '<h5>If you are interested in promoting your add-in on your website, please take a look at <a href="https://github.com/OfficeDev/OfficeJSAddinWidget/tree/main/WebWidget" target="_blank" rel="noopener noreferrer nofollow">Web Widget.</a></h5>'
       );
 
       document.getElementById("links").innerHTML = document.getElementById("links").innerHTML.concat(
         '<br><h6>Special Notice</h6>',
-          '<p>The tool is currently for experiment and test only.</p>',
-          '<p>The generated link is possible to change in the future when needed. In the case it changes, any code that uses this link may need to be updated.<p>',
           '<p>The deeplink can successfully open an Office document with your add-in and the end users can use your add-in for below scenarios only.</p>',
           '<p>&emsp;1. The add-in is public published, so that it can be found from Office AppSource.</p>',
           '<p>&emsp;2. The Office store is enabled for the end user.</p>');

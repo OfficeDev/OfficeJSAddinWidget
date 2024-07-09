@@ -15,7 +15,7 @@ The webpage will show the add-in name, a few details about the add-in functional
 > [!TIP]
 > If you want a simple trial on the dropdown button link that enables user to install and use add-in, please clone https://github.com/OfficeDev/OfficeJSAddinWidget/blob/main/LinkGenerator.html to your local, open with browser app and input the information as the UI shows.
 
-### Usage for how to generate the install link
+### Usage for how to generate the install link for Office on the Web
 
 To better distribute your add-in, you can create an install link to provide your users with the "click and run" experience from your website or anywhere else after you submit your add-in to AppSource. The link will seamlessly bring users to their Web sersion WXP with your add-in automatically launched, so you can directly guide users to try your add-in instead of letting them find it themselves in the Add-in Store. 
 
@@ -60,22 +60,27 @@ Where 2261819 is the Excel Web launch link ID, WA104380862 is Script Lab's add-i
 		&emsp;2) The add-in name is displayed as the title on right of the add-in icon.<br>
    For example, if the webpage is https://appsource.microsoft.com/en-US/product/office/WA104380862?tab=Overview, then "Script Lab, a Microsoft Garage project" is the add-in ID that you should input for this parameter in sample code.
 		
-	c. <strong>wordOnlineSupported, excelOnlineSupported, powerpointOnlineSupported</strong><br>
+	c. <strong>wordOnlineSupported, excelOnlineSupported, powerpointOnlineSupported, wordDesktopSupported, excelDesktopSupported, powerpointDesktopSupported</strong><br>
 		This is the Office products that this add-in supports. You can get the correct value by following below steps.<br>
 		&emsp;1) Go to the webpage in 2.a.4).<br>
 		&emsp;2) Click "details + support" tab on the webpage.<br>
 		&emsp;3) Scroll down to "Products supported" section.<br>
 			&emsp;&emsp;- If "Word on the web" is in the list, then set wordOnlineSupported to true. Otherwise, set it to false.<br>
 			&emsp;&emsp;- If "Excel on the web" is in the list, then set excelOnlineSupported to true. Otherwise, set it to false.<br>
-			&emsp;&emsp;- If "PowerPoint on the web" is in the list, then set powerpointOnlineSupported to true. Otherwise, set it to false.<br>
+			&emsp;&emsp;- If "PowerPoint on the web" is in the list, then set powerpointOnlineSupported to true. Otherwise, set it to false.<br>			
+			&emsp;&emsp;- If "Word on Windows" or "Word on Mac" is in the list, then set wordDesktopSupported to true. Otherwise, set it to false.<br>		
+			&emsp;&emsp;- If "Excel on Windows" or "Excel on Mac" is in the list, then set excelDesktopSupported to true. Otherwise, set it to false.<br>		
+			&emsp;&emsp;- If "PowerPoint on Windows" or "PowerPoint on Mac" is in the list, then set powerpointDesktopSupported to true. Otherwise, set it to false.<br>
+	d. <strong>language<strong><br>
+		The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. For example, "en-US".
 
-	d. <strong>linkAddInAppSource</strong><br>
+	e. <strong>linkAddInAppSource</strong><br>
 		If you would like to show the link to Office AppSource, then set linkAddInAppSource to true. Otherwise, set it to false.
 
-	e. <strong>addinDetails</strong><br>
+	f. <strong>addinDetails</strong><br>
 		This is for descriptions about the add-in functionalities displayed on the webpage. 
 		
-	f. <strong>demoImage</strong><br>
+	g. <strong>demoImage</strong><br>
 		This is the image for the add-in that display on the webpage.
 		
 4. Save the html file and open by browser. Verify the UI and dropdown links works for your scenario.
