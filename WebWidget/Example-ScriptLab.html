@@ -66,6 +66,10 @@
         var wordOnlineSupported = true; // Whether the Add-in is supported on Word Online (also known as Word Web). Please see README.txt about how to correctly set this value. 
         var excelOnlineSupported = true; // Whether the Add-in is supported on Excel Online (also known as Excel Web). Please see README.txt about how to correctly set this value. 
         var powerpointOnlineSupported = true; // Whether the Add-in is supported on PowerPoint Online (also known as PowerPoint Web). Please see README.txt about how to correctly set this value. 
+        var wordDesktopSupported = true; // Wheter the Add-in is supported on Word on Windows or Mac. Please see README.txt about how to correctly set this value. 
+        var excelDesktopSupported = true; // Wheter the Add-in is supported on Excel on Windows or Mac. Please see README.txt about how to correctly set this value. 
+        var powerpointDesktopSupported = true; // Wheter the Add-in is supported on PowerPoint on Windows or Mac. Please see README.txt about how to correctly set this value. 
+        var language = "en-US"; // The language of the Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac. Please see README.txt about how to correctly set this value.
         var linkAddInAppSource = true; // Whether to show the link to Office AppSource. Please see README.txt about how to correctly set this value. 
         var addinDetails = "Script Lab lets you quickly create, run, and share Office Add-ins in Excel, Word, and PowerPoint. Code seamlessly with JavaScript and TypeScript, no extra software needed!"; // Details about the Office Add-in.
         var demoImage = ".\\demoImage.png"; // The image for Add-in to show in the webpage. 
@@ -76,7 +80,10 @@
         var dropdownItemWordId = 'dropdown-item-word';
         var dropdownItemExcelId = 'dropdown-item-excel';
         var dropdownItemPowerPointId = 'dropdown-item-powerpoint';
-        var dropdownItemDesktopId = 'dropdown-item-desktop';
+        var dropdownItemWordDesktopId = 'dropdown-item-word-desktop';
+        var dropdownItemExcelDesktopId = 'dropdown-item-excel-desktop';
+        var dropdownItemPowerPointDesktopId = 'dropdown-item-powerpoint-desktop';
+        var dropdownItemAppSourceId = 'dropdown-item-app-source';
         var dropdownMenuId = 'dropdown-menu';
 
         var dropdownMenuAdded = false;
@@ -93,7 +100,7 @@
             var detailsElement = document.getElementById("details");
             detailsElement.innerText = addinDetails;
 
-            // Set demo video link
+            // Set demo image link
             var demoImgElement = document.getElementById("demo-img");
             demoImgElement.src = demoImage;
 
@@ -115,11 +122,77 @@
             bootstrap.Dropdown.getOrCreateInstance(addinDropdown).toggle();
         }
 
+        function generateGUID() {
+            var d = new Date().getTime();
+            if (
+                typeof performance !== 'undefined' &&
+                typeof performance.now === 'function'
+            ) {
+                d += performance.now(); //use high-precision timer if available
+            }
+            return 'xxxxxxxx-xxxx-yxxx-yxxx-xxxxxxxxxxxx'.replace(
+                /[xy]/g,
+                function (c) {
+                    var r = (d + Math.random() * 16) % 16 | 0;
+                    d = Math.floor(d / 16);
+                    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+                }
+            );
+        }
+
         function dropdownItemClicked(id) {
             switch (id) {
+                case dropdownItemWordDesktopId:
+                    window.open(
+                        'ms-word:https://api.addins.store.office.com/addinstemplate/'.concat(
+                            language,
+                            '/',
+                            generateGUID(), // This is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.
+                            '/',
+                            addinId,
+                            '/none/',
+                            addinName.replace(/[^A-Za-z0-9]/g, '-'),
+                            '.docx?omexsrctype=1'
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
+                case dropdownItemExcelDesktopId:
+                    window.open(
+                        'ms-excel:https://api.addins.store.office.com/addinstemplate/'.concat(
+                            language,
+                            '/',
+                            generateGUID(), // This is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.
+                            '/',
+                            addinId,
+                            '/none/',
+                            addinName.replace(/[^A-Za-z0-9]/g, '-'),
+                            '.xlsx?omexsrctype=1'
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
+                case dropdownItemPowerPointDesktopId:
+                    window.open(
+                        'ms-powerpoint:https://api.addins.store.office.com/addinstemplate/'.concat(
+                            language,
+                            '/',
+                            generateGUID(), // This is the correlation for diagnostic purpose. We strongly recommend you to runtime generate it and make it different per click.
+                            '/',
+                            addinId,
+                            '/none/',
+                            addinName.replace(/[^A-Za-z0-9]/g, '-'),
+                            '.pptx?omexsrctype=1'
+                        ),
+                        '_blank'
+                    );
+                    toggleAddinDropDown();
+                    break;
                 case dropdownItemWordId:
                     window.open(
-                        'https://go.microsoft.com/fwlink/?linkid=2261098&templateid='.concat( // The URL is for experiment only and likely to change if needed.
+                        'https://go.microsoft.com/fwlink/?linkid=2261098&templateid='.concat(
                             addinId,
                             '&templatetitle=',
                             addinName
@@ -130,7 +203,7 @@
                     break;
                 case dropdownItemExcelId:
                     window.open(
-                        'https://go.microsoft.com/fwlink/?linkid=2261819&templateid='.concat( // The URL is for experiment only and likely to change if needed.
+                        'https://go.microsoft.com/fwlink/?linkid=2261819&templateid='.concat(
                             addinId,
                             '&templatetitle=',
                             addinName
@@ -141,7 +214,7 @@
                     break;
                 case dropdownItemPowerPointId:
                     window.open(
-                        'https://go.microsoft.com/fwlink/?linkid=2261820&templateid='.concat( // The URL is for experiment only and likely to change if needed.
+                        'https://go.microsoft.com/fwlink/?linkid=2261820&templateid='.concat(
                             addinId,
                             '&templatetitle=',
                             addinName
@@ -150,7 +223,7 @@
                     );
                     toggleAddinDropDown();
                     break;
-                case dropdownItemDesktopId:
+                case dropdownItemAppSourceId:
                     window.open(
                         'https://appsource.microsoft.com/en-US/product/office/'.concat(
                             addinId
@@ -164,43 +237,47 @@
             }
         }
 
+        function addDropdownItem(dropdownItemId, svg, alt, text) {
+            var ul = document.getElementById(dropdownMenuId);
+                    var li = document.createElement("li");
+                    li.innerHTML = '<button id="'.concat(dropdownItemId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
+                        '<img width="32" height="32" src="', svg, '" alt="', alt, '">',
+                        '&emsp;', text,
+                        '</button>');
+                    ul.appendChild(li);
+        }
+
         function addDropdownItems() {
             if (dropdownMenuAdded == false) {
                 var dropdownMenuEmpty = true;
 
-                if (wordOnlineSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemWordId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgWord, '" alt="docx">',
-                        '&emsp;Open in Word on the Web',
-                        '</button>');
-                    ul.appendChild(li);
+                if (wordDesktopSupported) {
+                    addDropdownItem(dropdownItemWordDesktopId, svgWord, 'docx', 'Open in Word');
+                    dropdownMenuEmpty = false;
+                }
 
+                if (excelDesktopSupported) {
+                    addDropdownItem(dropdownItemExcelDesktopId, svgExcel, 'xlsx', 'Open in Excel');
+                    dropdownMenuEmpty = false;
+                }
+
+                if (powerpointDesktopSupported) {
+                    addDropdownItem(dropdownItemPowerPointDesktopId, svgPowerPoint, 'pptx', 'Open in PowerPoint');
+                    dropdownMenuEmpty = false;
+                }
+
+                if (wordOnlineSupported) {
+                    addDropdownItem(dropdownItemWordId, svgWord, 'docx', 'Open in Word on the Web');
                     dropdownMenuEmpty = false;
                 }
 
                 if (excelOnlineSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemExcelId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgExcel, '" alt="docx">',
-                        '&emsp;Open in Excel on the Web',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemExcelId, svgExcel, 'xlsx', 'Open in Excel on the Web');
                     dropdownMenuEmpty = false;
                 }
 
                 if (powerpointOnlineSupported) {
-                    var ul = document.getElementById(dropdownMenuId);
-                    var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemPowerPointId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)">',
-                        '<img width="32" height="32" src="', svgPowerPoint, '" alt="docx">',
-                        '&emsp;Open in PowerPoint on the Web',
-                        '</button>');
-                    ul.appendChild(li);
-
+                    addDropdownItem(dropdownItemPowerPointId, svgPowerPoint, 'pptx', 'Open in PowerPoint on the Web');
                     dropdownMenuEmpty = false;
                 }
 
@@ -215,7 +292,7 @@
                     }
 
                     var li = document.createElement("li");
-                    li.innerHTML = '<button id="'.concat(dropdownItemDesktopId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)" style="text-align: right">',
+                    li.innerHTML = '<button id="'.concat(dropdownItemAppSourceId, '" class="dropdown-item" type="button" onclick="dropdownItemClicked(this.id)" style="text-align: right">',
                         'Learn more ',
                         svgArrow,
                         '</button>');
