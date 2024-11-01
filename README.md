@@ -23,11 +23,14 @@ To create the link, you can reference the link below and configure the parameter
 {{appName}}:https://api.addins.store.office.com/addinstemplate/{{language}}/{{correlation}}/{{addinId}}/none/{{addinName}}.{{fileFormat}}?omexsrctype=1
 
 1. <strong>appName</strong><br>
-   This prarmeter controls which Office application would be opened when users click the link. <br>
+   This parameter controls which Office application would be opened when users click the link. <br>
 	· For Word: ms-word <br>
 	· For Excel: ms-excel <br>
 	· For PowerPoint: ms-powerpoint <br>
 	This approach currently supports WXP on Windows and Mac only.<br>
+
+> [!Note]
+> This parameter is part of the deeplink.
 
 2. <strong>language</strong><br>
    This is the language of Add-in instructions after opened on Word/Excel/PowerPoint on Windows or Mac.<br>
@@ -39,6 +42,9 @@ To create the link, you can reference the link below and configure the parameter
 
 4. <strong>addInId</strong><br>
    The ID of your add-in published in AppSource<br>
+
+> [!NOTE]
+> This parameter is case sensitive. Please use upper case in order to succeed.
 
 5. <strong>addInName</strong><br>
    The full name of your add-in in percent encoding format. For example, "space" should be %20, and "-" should be %2D...etc.<br>
