@@ -76,7 +76,6 @@ https://go.microsoft.com/fwlink/?linkid={{linkId}}&templateid={{addInId}}&templa
 
 3. <strong>addInName</strong><br>
    The full name of your add-in in percent encoding format. For example, "space" should be %20, and "-" should be %2D...etc.<br>
-   The name should not be longer than 128 characters.
 
 For example, for the add-in Script Lab, it supports all Word, Excel, PowerPoint. 
 If we want to create an install link so that users can click and launch Script Lab, this link should be:
