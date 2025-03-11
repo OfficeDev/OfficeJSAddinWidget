@@ -20,7 +20,7 @@ The webpage will show the add-in name, a few details about the add-in functional
 To better distribute your add-in, you can create an install link to provide your users with the "click and run" experience from your website or anywhere else after you submit your add-in to AppSource. The link will seamlessly bring users to their Web sersion WXP with your add-in automatically launched, so you can directly guide users to try your add-in instead of letting them find it themselves in the Add-in Store. 
 
 To create the link, you can reference the link below and configure the parameters in the query string.<br>
-<a href="url">{{appName}}:https://api.addins.store.office.com/addinstemplate/{{language}}/{{correlation}}/{{addinId}}/none/{{addinName}}.{{fileFormat}}?omexsrctype=1</a>
+<a href="url">{{appName}}:https://api.addins.store.office.com/addinstemplate/{{language}}/{{correlation}}/{{addinId}}/none/{{addinName}}.{{fileFormat}}?omexsrctype=1&isexternallink=1</a>
 
 1. <strong>appName</strong><br>
    This parameter controls which Office application would be opened when users click the link. <br>
@@ -55,7 +55,7 @@ To create the link, you can reference the link below and configure the parameter
 	· For PowerPoint: pptx <br>
 
 For example, if we want to create an install link so that users can click and launch Script Lab on Word on Windows, this link should be:
-<a href="url" target="_blank">ms-word:https://api.addins.store.office.com/addinstemplate/en-US/228a829b-69d7-45f4-a338-c6aba330ec7e/WA104380862/none/Script-Lab--a-Microsoft-Garage-project.docx?omexsrctype=1</a>.<br>
+<a href="url" target="_blank">ms-word:https://api.addins.store.office.com/addinstemplate/en-US/228a829b-69d7-45f4-a338-c6aba330ec7e/WA104380862/none/Script-Lab--a-Microsoft-Garage-project.docx?omexsrctype=1&isexternallink=1</a>.<br>
 
 ### Usage for how to generate the install link for Office on the Web
 
